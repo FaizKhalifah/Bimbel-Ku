@@ -11,6 +11,8 @@ async function main(){
 
 }
 
+
+
 const client = new MongoClient('mongodb://localhost:27017/BimbelKu');
 
 async function fetchMurid(){
