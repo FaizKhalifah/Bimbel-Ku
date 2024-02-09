@@ -16,3 +16,7 @@ async function fetchPelajaran(){
     const listPelajaran = await Pelajaran.find();
     return listPelajaran;
 }
+
+await addPelajaran("pemweb","pw123123");
+await addPelajaran("jarkom","jk1111");
+console.log(await fetchPelajaran());
