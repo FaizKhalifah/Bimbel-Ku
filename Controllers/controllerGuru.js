@@ -1,4 +1,4 @@
-import Guru from "../Models/guru.js"
+import Guru from "../Models/guru.js";
 import Pelajaran from "../Models/pelajaran.js";
 
 async function addGuru(nama,id){
