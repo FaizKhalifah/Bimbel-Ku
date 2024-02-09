@@ -5,9 +5,9 @@ mongoose.connect('mongodb://localhost:27017/BimbelKu');
 const schemaPelajaran = new Schema({
     nama:String,
     id:String,
-    DaftarMurid:Array,
+    daftarMurid:Array,
     guruPengajar:String,
-    jadwal:Date
+    jadwal:Array
 })
 
 const Pelajaran = mongoose.model('Pelajaran',schemaPelajaran);

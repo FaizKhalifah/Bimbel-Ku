@@ -12,7 +12,7 @@ async function addGuru(nama,id){
 }
 
 async function fetchGuru(){
-    const listGuru = Guru.find();
+    const listGuru = await Guru.find();
     return listGuru;
 }
 
