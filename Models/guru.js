@@ -11,4 +11,4 @@ const schemaGuru =  new Schema({
 
 const Guru = mongoose.model('Guru',schemaGuru);
 
-module.exports=Guru;
+export default Guru;

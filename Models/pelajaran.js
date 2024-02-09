@@ -12,4 +12,4 @@ const schemaPelajaran = new Schema({
 
 const Pelajaran = mongoose.model('Pelajaran',schemaPelajaran);
 
-module.exports=Pelajaran;
+export default Pelajaran;

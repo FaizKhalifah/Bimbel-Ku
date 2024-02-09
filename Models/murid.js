@@ -11,4 +11,4 @@ const schemaMurid = new Schema({
 
 const Murid = mongoose.model('Murid',schemaMurid);
 
-module.exports=Murid;
+export default Murid;

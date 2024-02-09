@@ -1,12 +1,12 @@
 import Murid from "../Models/murid.js"
 
-async function addMurid(nama,id,mataPelajaran){
+async function addMurid(nama,id){
     const muridBaru = new Murid({
         nama:nama,
         id:id,
-        mataPelajaran:mataPelajaran
+        mataPelajaran:[]
     })
-   await muridBaru.save();
+    await muridBaru.save();
     return 
 }
 
@@ -23,5 +23,3 @@ async function deleteMurid(nama,id){
     return;  
 }
 
-await addMurid("Ravi","12312312",["Pemweb"]);
-console.log(await fetchMurid())
