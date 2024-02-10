@@ -88,6 +88,15 @@ async function findGuru(nama,id){
     }
 }
 
+export default{
+    addGuru,
+    fetchGuru,
+    deleteGuru,
+    pilihPelajaran,
+    checkPelajaran,
+    findGuru
+}
+
 
 
 

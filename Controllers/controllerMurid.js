@@ -90,6 +90,12 @@ async function findMurid(nama,id){
     }
 }
 
-const status = await checkMurid("Faizz","1213131");
-console.log(status);
 
+export default{
+    addMurid,
+    fetchMurid,
+    deleteMurid,
+    pilihPelajaran,
+    checkPelajaran,
+    findMurid
+}

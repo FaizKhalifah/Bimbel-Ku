@@ -1,7 +1,8 @@
 import process from "process";
 import readlinePromises from "readline/promises";
-import { MongoClient } from 'mongodb';
-
+import * as controllerGuru from "./Controllers/controllerGuru";
+import * as controllerMurid from "./Controllers/controllerMurid";
+import * as controllerPelajaran from "./Controllers/controllerPelajaran";
 
 const input = readlinePromises.createInterface({
     input:process.stdin,
@@ -9,10 +10,24 @@ const input = readlinePromises.createInterface({
 })
 
 async function main(){
+    console.log("Selamat datang di sistem akademik bimbel-Ku");
+    while(true){
+        const opsiMasuk = await input.question("Kamu ingin masuk sebagai apa (guru/murid)?");
+        if(opsiMasuk.toLowerCase()=="guru"){
+    
+        }else if(opsiMasuk.toLowerCase()=="murid"){
+    
+        }else if(opsiMasuk.toLowerCase()=="keluar"){
+            console.log("Anda telah keluar dari program");
+            input.close();
+            return;
+        }
+        else{
+            console.log("Perintah tidak dikenal");
+        }
+    }
 
 }
 
-
-
-const client = new MongoClient('mongodb://localhost:27017/BimbelKu');
+main();
 

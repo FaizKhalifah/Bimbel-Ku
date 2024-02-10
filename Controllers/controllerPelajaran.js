@@ -17,6 +17,7 @@ async function fetchPelajaran(){
     return listPelajaran;
 }
 
-await addPelajaran("pemweb","pw123123");
-await addPelajaran("jarkom","jk1111");
-console.log(await fetchPelajaran());
+export default{
+    addPelajaran,
+    fetchPelajaran
+}
