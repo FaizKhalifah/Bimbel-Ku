@@ -50,7 +50,6 @@ async function pilihPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran){
         return;
     }else{
         if(await checkPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran)==false){
-            console.log("Mata pelajaran sudah diampu");
             return;
         }
         await Guru.updateOne(guru,{$push:{mataPelajaran:pelajaran}});
@@ -65,11 +64,23 @@ async function checkPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran){
             nama:namaGuru,
             id:idGuru
         }
+
+        const pelajaran = {
+            nama:namaPelajaran,
+            id:idPelajaran
+        }
         const arrayPelajaran = await Guru.findOne(guru,{mataPelajaran:1});
         for(let i in arrayPelajaran.mataPelajaran){
             if(arrayPelajaran.mataPelajaran[i].nama==namaPelajaran && arrayPelajaran.mataPelajaran[i].id==idPelajaran){
+                console.log("Mata pelajaran ini sudah Anda pilih");
                 return false;
             }
+        }
+
+        const statusPengajaran = await Pelajaran.findOne(pelajaran,{guruPengajar:1});
+        if(statusPengajaran!=null){
+            console.log("Mata pelajaran sudah diampu guru lain");
+            return false;
         }
 
         return true;
@@ -94,10 +105,21 @@ async function listPelajaran(nama,id){
         id:id
     }
     const arrayPelajaran = await Guru.findOne(guru,{mataPelajaran:1});
-    for(let i in arrayPelajaran.mataPelajaran){
-        console.log(`${Number(i)+1} ${arrayPelajaran.mataPelajaran[i].nama}`)
+    const mataPelajaran = arrayPelajaran.mataPelajaran;
+    if(mataPelajaran.length==0){
+        console.log("Anda belum mengampu pelajaran apapun");
+    }else{
+        for(let i in mataPelajaran){
+            if(mataPelajaran[i].nama==null){
+                continue;
+            }
+            console.log(`${Number(i)+1} ${mataPelajaran[i].nama}`)
+        }
     }
+   
 }
+
+
 
 export default{
     addGuru,

@@ -29,22 +29,33 @@ async function main(){
                     }else if(opsiRegister.toLowerCase()=="tidak"){
                         console.log("Keluar dari program");
                         input.close();
-                        return;
+                        break;
                     }else{
                         console.log("Perintah tidak dikenal");
                     }
                 }
                 
             }else{
-                while(true){
+              
                     console.log(`Selamat datang ${username}`);
                     const opsiGuru = ["Daftar Kelas","Pilih Kelas","Keluar"];
+                    while(true){
                     for(let i in opsiGuru){
                         console.log(`${Number(i)+1}. ${opsiGuru[i]}`);
                     }
                     let opsi = await input.question("Masukkan opsi dalam angka : ");
-                    if(Number(i)==1){
-                        await controllerGuru.listPelajaran();
+                    if(opsi==1){
+                       await controllerGuru.default.listPelajaran(username,id);
+                    }else if(opsi==2){
+                        console.log(await controllerPelajaran.default.fetchPelajaran());
+                        let namaPelajaran = await input.question("Masukkan nama pelajaran yang ingin diampu : ");
+                        let idPelajaran = await input.question("Masukkan id pelajaran yang ingin diampu : ")
+                        await controllerGuru.default.pilihPelajaran(username,id,namaPelajaran,idPelajaran);
+                    }else if(opsi==3){
+                        console.log("Keluar dari program");
+                        process.exit(1);
+                    }else{
+                        console.log("Perintah tidak dikenal");
                     }
                 }
             }
