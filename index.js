@@ -36,7 +36,6 @@ async function main(){
                 }
                 
             }else{
-              
                     console.log(`Selamat datang ${username}`);
                     const opsiGuru = ["Daftar Kelas","Pilih Kelas","Keluar"];
                     while(true){
@@ -61,7 +60,34 @@ async function main(){
             }
             
         }else if(opsiMasuk.toLowerCase()=="murid"){
-    
+            const username = await input.question("Masukkan namamu : ");
+            const id = await input.question("Masukkan id-mu : ");
+            if(await controllerMurid.default.findMurid(username,id)==false){
+                console.log("Akun anda belum terdaftar di database");
+                while(true){
+                    const opsiRegister = await input.question("Apakah kamu ingin membuat akun baru (ya/tidak) ? ");
+                    if(opsiRegister.toLowerCase()=="ya"){
+                        const usernameBaru = await input.question("Masukkan username yang ingin kamu gunakan : ");
+                        const passwordBaru = await input.question("Masukkan password yang ingin kamu gunakan : ");
+                        await controllerMurid.default.addMurid(usernameBaru,passwordBaru);
+                        console.log("Akunmu sudah terdaftar");
+                        break;
+                    }else if(opsiRegister.toLowerCase()=="tidak"){
+                        console.log("Keluar dari program");
+                        process.exit(1);
+                    }else{
+                        console.log("Perintah tidak dikenal");
+                    }
+                }
+            }else{
+                console.log(`Selamat datang ${username}`);
+                const opsiMurid = ["Lihat daftar kelas", "pilih kelas","keluar"];
+                while(true){
+                    for (let i in opsiMurid){
+                        console.log(`${Number(i)+1} ${opsiMurid[i]}`);
+                    }
+                }
+            }
         }else if(opsiMasuk.toLowerCase()=="keluar"){
             console.log("Anda telah keluar dari program");
             input.close();
