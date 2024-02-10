@@ -2,6 +2,11 @@ import Guru from "../Models/guru.js";
 import Pelajaran from "../Models/pelajaran.js";
 
 async function addGuru(nama,id){
+    const status = await findGuru(nama,id);
+    if(status==true){
+        console.log("Guru sudah terdaftar di database");
+        return;
+    }
     const guruBaru = new Guru({
         nama:nama,
         id:id,
@@ -18,6 +23,11 @@ async function fetchGuru(){
 }
 
 async function deleteGuru(nama,id){
+    const status = await findGuru(nama,id);
+    if(status==false){
+        console.log("Nama guru tidak terdaftar");
+        return;
+    }
     await Guru.deleteOne({
         nama:nama,
         id:id
@@ -39,6 +49,10 @@ async function pilihPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran){
         console.log("Pelajaran tidak ada pada database");
         return;
     }else{
+        if(await checkPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran)==false){
+            console.log("Mata pelajaran sudah diampu");
+            return;
+        }
         await Guru.updateOne(guru,{$push:{mataPelajaran:pelajaran}});
         await Pelajaran.updateOne(pelajaran,{$set:{guruPengajar:namaGuru}});
         console.log("Mata pelajaran berhasil ditambah");
