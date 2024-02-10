@@ -90,6 +90,17 @@ async function findMurid(nama,id){
     }
 }
 
+async function listPelajaran(nama,id){
+    const murid = {
+        nama:nama,
+        id:id
+    }
+    const arrayPelajaran = await Murid.findOne(murid,{mataPelajaran:1});
+    for(let i in arrayPelajaran.mataPelajaran){
+        console.log(`${Number(i)+1} ${arrayPelajaran.mataPelajaran[i].nama}`)
+    }
+}
+
 
 export default{
     addMurid,
@@ -97,5 +108,6 @@ export default{
     deleteMurid,
     pilihPelajaran,
     checkPelajaran,
-    findMurid
+    findMurid,
+    listPelajaran
 }

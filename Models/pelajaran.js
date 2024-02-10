@@ -6,8 +6,7 @@ const schemaPelajaran = new Schema({
     nama:String,
     id:String,
     daftarMurid:Array,
-    guruPengajar:String,
-    jadwal:Array
+    guruPengajar:String
 })
 
 const Pelajaran = mongoose.model('Pelajaran',schemaPelajaran);

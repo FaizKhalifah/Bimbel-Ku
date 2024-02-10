@@ -14,7 +14,7 @@ async function main(){
     while(true){
         const opsiMasuk = await input.question("Kamu ingin masuk sebagai apa (guru/murid)?");
         if(opsiMasuk.toLowerCase()=="guru"){
-    
+            const opsiGuru = ["Daftar Kelas","Pilih Kelas","Keluar"];
         }else if(opsiMasuk.toLowerCase()=="murid"){
     
         }else if(opsiMasuk.toLowerCase()=="keluar"){

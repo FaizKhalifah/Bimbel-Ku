@@ -88,13 +88,25 @@ async function findGuru(nama,id){
     }
 }
 
+async function listPelajaran(nama,id){
+    const guru = {
+        nama:nama,
+        id:id
+    }
+    const arrayPelajaran = await Guru.findOne(guru,{mataPelajaran:1});
+    for(let i in arrayPelajaran.mataPelajaran){
+        console.log(`${Number(i)+1} ${arrayPelajaran.mataPelajaran[i].nama}`)
+    }
+}
+
 export default{
     addGuru,
     fetchGuru,
     deleteGuru,
     pilihPelajaran,
     checkPelajaran,
-    findGuru
+    findGuru,
+    listPelajaran
 }
 
 
