@@ -44,11 +44,13 @@ async function main(){
                     }
                     let opsi = await input.question("Masukkan opsi dalam angka : ");
                     if(opsi==1){
+                        console.log("========================================");
                        await controllerGuru.default.listPelajaran(username,id);
+                       console.log("========================================");
                     }else if(opsi==2){
                         console.log(await controllerPelajaran.default.fetchPelajaran());
                         let namaPelajaran = await input.question("Masukkan nama pelajaran yang ingin diampu : ");
-                        let idPelajaran = await input.question("Masukkan id pelajaran yang ingin diampu : ")
+                        let idPelajaran = await input.question("Masukkan id pelajaran yang ingin diampu : ");
                         await controllerGuru.default.pilihPelajaran(username,id,namaPelajaran,idPelajaran);
                     }else if(opsi==3){
                         console.log("Keluar dari program");
@@ -85,6 +87,21 @@ async function main(){
                 while(true){
                     for (let i in opsiMurid){
                         console.log(`${Number(i)+1} ${opsiMurid[i]}`);
+                    }
+                    const opsi = await input.question("Masukkan opsi yang kamu inginkan (dalam angka) : ");
+                    if(opsi==1){
+                        console.log("========================================");
+                        await controllerMurid.default.listPelajaran(username,id);
+                        console.log("========================================");
+                    }else if(opsi==2){
+                        let namaPelajaran = await input.question("Masukkan nama pelajaran yang ingin kamu ikuti : ");
+                        let idPelajaran = await input.question("Masukkan id pelajaran yang ingin diikuti : ");
+                        await controllerMurid.default.pilihPelajaran(username,id,namaPelajaran,idPelajaran);
+                    }else if(opsi==3){
+                        console.log("Keluar dari program");
+                        process.exit(1);
+                    }else{
+                        console.log("Perintah tidak dikenal");
                     }
                 }
             }

@@ -96,8 +96,16 @@ async function listPelajaran(nama,id){
         id:id
     }
     const arrayPelajaran = await Murid.findOne(murid,{mataPelajaran:1});
-    for(let i in arrayPelajaran.mataPelajaran){
-        console.log(`${Number(i)+1} ${arrayPelajaran.mataPelajaran[i].nama}`)
+    const mataPelajaran = arrayPelajaran.mataPelajaran;
+    if(mataPelajaran.length==0){
+        console.log("Anda belum mengikuti pelajaran apapun");
+    }else{
+        for(let i in mataPelajaran){
+            if(mataPelajaran[i].nama==null){
+                continue;
+            }
+            console.log(`${Number(i)+1} ${mataPelajaran[i].nama}`)
+        }
     }
 }
 
