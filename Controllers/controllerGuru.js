@@ -46,5 +46,34 @@ async function pilihPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran){
     }
 }
 
-await pilihPelajaran("Bujan","2111424","pemweb","pw123123");
+async function checkPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran){
+        const guru = {
+            nama:namaGuru,
+            id:idGuru
+        }
+        const arrayPelajaran = await Guru.findOne(guru,{mataPelajaran:1});
+        for(let i in arrayPelajaran.mataPelajaran){
+            if(arrayPelajaran.mataPelajaran[i].nama==namaPelajaran && arrayPelajaran.mataPelajaran[i].id==idPelajaran){
+                return false;
+            }
+        }
+
+        return true;
+}
+
+async function findGuru(nama,id){
+    const guru = {
+        nama:nama,
+        id:id
+    }
+    const status = await Guru.findOne(guru);
+    if(status==null){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+
+
 

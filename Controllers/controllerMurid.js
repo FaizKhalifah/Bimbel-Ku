@@ -2,6 +2,11 @@ import Murid from "../Models/murid.js";
 import Pelajaran from "../Models/pelajaran.js";
 
 async function addMurid(nama,id){
+    const status = await findMurid(nama,id);
+    if(status==true){
+        console.log("Nama sudah terdaftar di database");
+        return;
+    }
     const muridBaru = new Murid({
         nama:nama,
         id:id,
@@ -17,10 +22,16 @@ async function fetchMurid(){
 }
 
 async function deleteMurid(nama,id){
+    const status = await findMurid(nama,id);
+    if(status==false){
+        console.log("Tidak ada nama murid tersebut di database");
+        return;
+    }
     await Murid.deleteOne({
         nama:nama,
         id:id
-    })
+    });
+    console.log("Murid berhasil dihapus");
     return;  
 }
 
@@ -52,10 +63,6 @@ async function pilihPelajaran(namaMurid,idMurid,namaPelajaran,idPelajaran){
 }
 
 async function checkPelajaran(namaMurid,idMurid,namaPelajaran,idPelajaran){
-    const pelajaran = {
-        nama:namaPelajaran,
-        id:idPelajaran
-    }
     const murid = {
         nama:namaMurid,
         id:idMurid
@@ -83,6 +90,6 @@ async function findMurid(nama,id){
     }
 }
 
-const status = await pilihPelajaran("Faiz","1213131","pemweb","pw123123");
+const status = await checkMurid("Faizz","1213131");
 console.log(status);
 
