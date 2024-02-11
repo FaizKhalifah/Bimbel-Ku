@@ -28,8 +28,7 @@ async function main(){
                         break;
                     }else if(opsiRegister.toLowerCase()=="tidak"){
                         console.log("Keluar dari program");
-                        input.close();
-                        break;
+                        process.exit(1);
                     }else{
                         console.log("Perintah tidak dikenal");
                     }

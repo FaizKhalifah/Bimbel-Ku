@@ -6,7 +6,6 @@ const schemaGuru =  new Schema({
     nama:String,
     id: String,
     mataPelajaran:Array,
-    gaji:Number
 })
 
 const Guru = mongoose.model('Guru',schemaGuru);

@@ -78,7 +78,7 @@ async function checkPelajaran(namaGuru,idGuru,namaPelajaran,idPelajaran){
         }
 
         const statusPengajaran = await Pelajaran.findOne(pelajaran,{guruPengajar:1});
-        if(statusPengajaran!=null){
+        if(statusPengajaran.guruPengajar!=null){
             console.log("Mata pelajaran sudah diampu guru lain");
             return false;
         }
